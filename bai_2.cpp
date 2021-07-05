@@ -12,6 +12,7 @@ class sinhvien
 {
 public:
     string hovaten;
+    char xep_loai;
     int id;
     float toan = 0, ly = 0, hoa = 0, tb = 0;
 public:
@@ -19,11 +20,13 @@ public:
     {
         this->id = this->toan = this->ly = this->hoa = 0;
         this->hovaten = "";
+        this->xep_loai = ' ';
     }
     ~sinhvien()
     {
         this->id = this->toan = this->ly = this->hoa = 0;
         this->hovaten = "";
+        this->xep_loai = ' ';
     }
     void set();
     void get();
@@ -31,6 +34,27 @@ public:
     {
         this->tb = (this->toan + this->ly + this->hoa) / 3;
         cout << " diem trung binh la : " << this->tb << "\n";
+        //xep loai sinh vien
+        if (this->tb >= 9)
+        {
+            this->xep_loai = 'A';
+            cout << "xep loai : " << this->xep_loai << "\n";
+        }
+        else if (this->tb >= 7 && this->tb < 9)
+        {
+            this->xep_loai = 'B';
+            cout << "xep loai : " << this->xep_loai << "\n";
+        }
+        else if (this->tb >= 5 && this->tb < 7)
+        {
+            this->xep_loai = 'C';
+            cout << "xep loai : " << this->xep_loai << "\n";
+        }
+        else
+        {
+            this->xep_loai = 'D';
+            cout << "xep loai : " << this->xep_loai << "\n";
+        }
     }
 };
 void sinhvien::set()
@@ -68,7 +92,7 @@ int main()
     obj.tinh_tb();
     // mo flie va ghi vao file data
     f.open("D:\\data\\danh_sach_sinh_vien.txt", ios::out);
-    f << "ho va ten : " << obj.hovaten << " msv : " << obj.id << " diem toan = " << obj.toan << " diem ly = " << obj.ly << " diem hoa = " << obj.hoa << " diem tb = " << obj.tb << "\n";
+    f << "ho va ten : " << obj.hovaten << " msv : " << obj.id << " diem toan = " << obj.toan << " diem ly = " << obj.ly << " diem hoa = " << obj.hoa << " diem tb = " << obj.tb <<" xep loai : "<<obj.xep_loai<<"\n";
     f.close();
     return 0;
 }
